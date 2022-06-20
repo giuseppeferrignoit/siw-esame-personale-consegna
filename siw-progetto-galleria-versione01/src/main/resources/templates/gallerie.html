@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>  	
+		<meta charset="ISO-8859-1" />
+	    <title>Gallerie - utente</title>
+		<link rel="stylesheet" th:href="@{/css/my-style.css}"/>
+		<link rel="stylesheet" th:href="@{/css/elenchi.css}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">	
+	</head> 	
+	
+	<body>
+		<header th:replace="fragments/baseUtente.html :: intestazione"></header>	
+		<div id="container">
+			<div id="section">
+				<div th:if="${!gallerie.empty}" class="section-item">
+					<div class="titoli"><h1>Le nostre gallerie</h1></div>	
+					<div>
+						<ul id="elenco">
+							<li th:each="galleria: ${gallerie}">
+								<span>
+									<a th:href="@{'/galleriaUtente' + '/' + ${galleria.id}}"
+							   		th:text="${galleria.nome}">Galleria</a>
+							   	</span>
+							</li>	   	
+						</ul>
+					</div>
+				</div>
+				<div th:unless="${!gallerie.empty}" class="section-item">
+					<div><h2>Non ci sono ancora gallerie censite</h2></div>
+				</div>
+			</div>
+			<img src="/images/galleria1.jpg"></img>
+		</div>
+	</body>
+
+</html>

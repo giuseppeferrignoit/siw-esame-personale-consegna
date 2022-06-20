@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>  	
+		<meta charset="ISO-8859-1" />
+		<title>Dettagli Cliente</title>
+		<link rel="stylesheet" th:href="@{/css/my-style.css}"/>
+		<link rel="stylesheet" th:href="@{/css/descrizioni.css}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">     
+	</head> 
+
+	<body>
+		<header th:replace="fragments/base.html :: intestazione"></header>
+		<div id="sfondo-cliente"></div>
+		<div id="section">
+			<div class="section-item">
+				<div><strong>Nome: </strong>
+				<span th:text="${cliente.nome}">Nome Cliente</span></div>
+				<div><strong>Cognome: </strong>
+				<span  th:text="${cliente.cognome}">Cognome Cliente</span></div>
+				<div><strong>Nazionalita': </strong>
+				<span th:text="${cliente.nazionalita}">Nazionalità</span></div>
+				<div th:if="${cliente.indirizzo != null}"><strong>Indirizzo: </strong>
+				<span th:text="${cliente.indirizzo}">Indirizzo</span></div>
+			</div>
+			<div class="section-item" id="buttons">
+				<div class="button">
+					<p><a th:href="@{'/cliente' + '/' + ${cliente.id} + '/' + 
+						'opere'}"><strong>Consulta opere acquistate</strong></a>
+					</p>
+				</div>
+				<div class="button">
+					<p><a th:href="@{'/cliente' + '/' + ${cliente.id} + '/' + 
+						'scegliOperaDaAcquistare'}"><strong class="conferma">Acquista una nuova opera</strong></a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>  	
+		<meta charset="ISO-8859-1" />
+		<title>Dettagli Opera</title>
+		<link rel="stylesheet" th:href="@{/css/my-style.css}"/>
+		<link rel="stylesheet" th:href="@{/css/descrizioni.css}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">     
+	</head> 
+
+	<body>
+		<header th:replace="fragments/base.html :: intestazione"></header>
+		<div id="sfondo-opera"></div>
+		<div id="section">
+			<div class="section-item">
+				<div><strong>Nome: </strong>
+				<span th:text="${opera.nome}">Nome Opera</span></div>
+				<div><strong>Descrizione: </strong>
+				<span  th:text="${opera.descrizione}">Descrizione</span></div>
+				<div><strong>Artista: </strong>
+				<a th:text="${opera.artista}" th:href="@{'/artista' + '/' + ${opera.artista.id}}">Artista</a></div>
+				<div th:if="${opera.gallery != null}"><strong>Galleria:</strong>
+				<a th:text="${opera.gallery.nome}" th:href="@{'/galleria' + '/' + ${opera.gallery.id}}">Galleria</a></div>
+				<div th:if="${opera.cliente != null}"><strong>Cliente: </strong>
+				<a th:text="${opera.cliente}" th:href="@{'/cliente' + '/' + ${opera.cliente.id}}">Cliente</a></div>
+			</div>
+		</div>	
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="ISO-8859-1" />
+	    <title>Elimina opera</title>
+		<link rel="stylesheet" th:href="@{/css/my-style.css}"/>
+		<link rel="stylesheet" th:href="@{/css/elenchi.css}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	
+	<body>
+		<header th:replace="fragments/base.html :: intestazione"></header>	
+		<div id="container">
+			<div id="section">
+				
+				<div id="buttons">
+					<div th:if="${opera.cliente != null}">
+						<h3>Non è possibile eliminare l'opera: 
+							<span th:text="${opera.nome}">Nome opera </span>
+								(<span th:text="${opera.descrizione}">Descrizione </span>)
+							
+							<p>
+								E' già stata venduta
+							</p>
+						</h3>
+					</div>
+					<div th:unless="${opera.cliente != null}">
+						<div>
+							<h3>Sei sicuro di voler eliminare l'opera 
+								<span th:text="${opera.nome}">Nome opera </span>
+								(<span th:text="${opera.descrizione}">Descrizione </span>)?
+							</h3>
+						</div>
+						<p class="zonaConferme">
+							<span class="bottone">
+								<a th:href="@{'/confermaDeleteOpera' + '/' + ${opera.id}}"><strong class="rosso">CONFERMA</strong></a>
+							</span>
+							<span class="bottone">
+								<a th:href="@{'/opere'}"><strong class="verde">ANNULLA</strong></a>
+							</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<img src="/images/vangogh-vasodigirasoli.jpg"></img>
+		</div>	
+	</body>
+</html>

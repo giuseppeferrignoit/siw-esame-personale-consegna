@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>  	
+		<meta charset="ISO-8859-1" />
+		<title>Dettagli Chef</title>
+		<link rel="stylesheet" th:href="@{/css/my-style.css}"/>
+		<link rel="stylesheet" th:href="@{/css/descrizioni.css}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">    
+	</head> 
+
+	<body>
+		<header th:replace="fragments/baseUtente.html :: intestazione"></header>
+		<div id="sfondo-galleria"></div>
+		<div id="section">
+			<div class="section-item">
+				<div><strong>Nome: </strong>
+				<span th:text="${galleria.nome}">Galleria</span></div>
+				<div><strong>Descrizione: </strong>
+				<span  th:text="${galleria.descrizione}">Descrizione</span></div>
+				<div><strong>Citta': </strong>
+				<span  th:text="${galleria.citta}">Citta'</span></div>
+			</div>
+			<div class="section-item" id="buttons">
+				<div class="button">
+					<p><a th:href="@{'/galleriaUtente' + '/' + ${galleria.id} + '/' + 
+						'opereUtente'}">Consulta Opere della Galleria</a>
+					</p>
+				</div>
+			</div>
+		</div>		
+	</body>
+
+</html>

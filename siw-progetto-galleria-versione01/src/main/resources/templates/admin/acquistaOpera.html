@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>  	
+		<meta charset="ISO-8859-1" />
+	    <title>Acquisto opere - admin</title>
+		<link rel="stylesheet" th:href="@{/css/my-style.css}"/>
+		<link rel="stylesheet" th:href="@{/css/elenchi.css}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">	  
+	</head> 
+	
+	<body>
+		<header th:replace="fragments/base.html :: intestazione"></header>	
+		<div id="container">
+			<div id="section">
+				<div class="section-item" th:if="${!cliente.opere.empty}">
+					<div class="titoli"><h2>Opere gia' acquistate dal cliente:</h2></div>
+					<div>
+						<ul id="elenco" th:if="${!cliente.opere.empty}">
+							
+							<li th:each="opera: ${cliente.opere}">
+								<span><strong class="verde">OPERA: </strong></span>
+								<span>
+									<a th:href="@{'/opera' + '/' + ${opera.id}}"
+							   		th:text="${opera.nome}">Opera</a>
+							   	</span>
+							</li>	   	
+						</ul>
+					</div>
+				</div>
+				<div class="section-item" th:if="${!opere.empty}">
+					<div class="titoli">
+						<h2>Vuoi effettuare un acquisto di opera per: <span th:text="${cliente.nome} + ' ' + ${cliente.cognome}"></span>?</h2>
+					</div>
+					<div>
+						<ul id="elenco" >
+							<li th:each="opera: ${opere}">
+								<p>
+									<span> <strong class="verde">OPERA: </strong></span>
+									<span>
+										<a th:href="@{'/opera' + '/' + ${opera.id}}"
+								   		th:text="${opera.nome}">Opera</a>
+								   	</span>
+								   	<span th:if="${opera.gallery != null}">
+										<strong class="verde"> - GALLERIA:</strong>
+										<a href="#" th:href="@{'/galleria' + '/' + ${opera.gallery.id}}"
+										th:text="${opera.gallery.nome}">Galleria</a></a>
+									</span> 
+								   	<span th:if="${opera.gallery != null}">
+										<a th:href="@{'/cliente' + '/' + ${cliente.id}
+										 + '/opera' +'/' + ${opera.id}}"><strong class="conferma">ACQUISTA</strong></a> 
+									</span>
+									<span th:unless="${opera.gallery != null}">
+										- Opera non associata ad una galleria!
+									</span>
+								</p>
+								
+							</li>	   	
+						</ul>
+					</div>
+				</div>
+				<div class="section-item" th:unless="${!opere.empty}">
+					<h2>Al momento non ci sono opere disponibili da acquistare per il cliente</h2>				
+				</div>
+			</div>
+			<img src="/images/vangogh-vasodigirasoli.jpg"></img>
+		</div>
+	</body>
+
+</html>
